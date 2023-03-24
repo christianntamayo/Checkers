@@ -1,3 +1,4 @@
+package Pieces;
 public class Pawn {
     
     //properties of a pawn?
