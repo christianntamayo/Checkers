@@ -64,7 +64,7 @@ public class OldBitboard {
         }
     }
 
-    //print out the board
+    //print out the board (to string kind of but not really)
     public void printBoard() {
 
         //go through rows and then columns

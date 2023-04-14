@@ -17,8 +17,12 @@ public class Tile {
     //tile methods
 
     //what is the state of the tile
-    public char tileState() {
+    public char getTileState() {
         return this.tileState;
+    }
+
+    public void setTileState(char newState) {
+        this.tileState = newState;
     }
 
     //is it empty or not
