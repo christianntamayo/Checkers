@@ -1,11 +1,15 @@
 public class Bitboard {
     //properties of the bitboard
+
+    //2D array of all the tiles
     private Tile[][] board;
+
+    //parameters of the 8x8 board
     private int rowWidth = 8;
     private int colWidth = 8;
 
-    //bitboard constructor
-    Bitboard() {
+    //bitboard constructor that will create all the tiles
+    public Bitboard() {
         //initialize the board with the width
         this.board = new Tile[rowWidth][colWidth];
 
@@ -111,7 +115,7 @@ public class Bitboard {
         System.out.println();
     }
 
-    public void movePawn(Pawn pawn) {
+    public void movePawn(Piece pawn) {
         int row = pawn.getRow();
         int col = pawn.getCol();
         setTileState(row, col, '-');

@@ -1,33 +1,62 @@
 public class Tile {
-    //properties of a tile
-    private boolean isEmpty;
-    private char tileState;
-    private String color;
-    private int row, col;
+    //the properties of the tile
 
-    //constructor
-    Tile(int row, int col, String color, char tileState, boolean isEmpty) {
+    //where is the tile on the board?
+    private int row;
+    private int col;
+
+    //what color is the tile? 
+    private String color;
+    //what is the name of the tile?
+    private String name;
+
+    //char representation of the status of the tile
+    private char tileState;
+
+    //is the tile empty or not? 
+    private boolean tileEmpty;
+
+
+    //constructor that will set all the values of the tile
+    public Tile(int row, int col, String color, String name, char tileState, boolean tileEmpty) {
         this.row = row;
         this.col = col;
         this.color = color;
+        this.name = name;
         this.tileState = tileState;
-        this.isEmpty = isEmpty;
+        this.tileEmpty = tileEmpty;
     }
 
-    //tile methods
+    //the tile accessor methods
 
-    //what is the state of the tile
-    public char getTileState() {
+    public int getRow() {
+        return this.row;
+    }
+
+    public int getCol() {
+        return this.col;
+    }
+
+    public String getColor() {
+        return this.color;
+    }
+
+    public String getName() {
+        return this.name;
+    }
+
+    public char getState() {
         return this.tileState;
     }
 
-    public void setTileState(char newState) {
-        this.tileState = newState;
+    public boolean isTileEmpty() {
+        return this.tileEmpty;
     }
 
-    //is it empty or not
-    public boolean isEmpty() {
-        return this.isEmpty;
+    //the tile mutator methods
+
+    public void setTileState(char newState) {
+        this.tileState = newState;
     }
 }
 
