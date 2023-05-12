@@ -1,126 +1,123 @@
+import java.util.ArrayList;
+
 public class Bitboard {
     //properties of the bitboard
 
     //2D array of all the tiles
     private Tile[][] board;
 
-    //parameters of the 8x8 board
-    private int rowWidth = 8;
-    private int colWidth = 8;
+    //white stones and black stones
+    private ArrayList<Stone> whiteStones;
+    private ArrayList<Stone> blackStones;
 
     //bitboard constructor that will create all the tiles
     public Bitboard() {
-        //initialize the board with the width
-        this.board = new Tile[rowWidth][colWidth];
+        //initialize the 8x8 board
+        this.board = new Tile[8][8];
+        //initialize stones
+        this.whiteStones = new ArrayList<>();
+        this.blackStones = new ArrayList<>();
 
-        //variable to switch between black and white 
-        String color = "black";
+        //variable to switch between black and white for the tiles
+        String color = "white";
+
+        //variables for the name of the tile
+        char letter = 'A';
+        int number = 8;
 
         //put in the tiles into the board
         for (int row = 0; row < this.board.length; row++) {
-            //switch the color
-            color = tileColorSwitch();
             for (int col = 0; col < this.board.length; col++) {
+
+                //make the name of the tile
+                String name = letter + Integer.toString(number);
                 
-                //first row and last row
-                if(row == 0 || row == 7) {
 
-                    if(col == 0) {
-                        //rook
-                        this.board[row][col] = new Tile(row, col, color, 'R', false);
-                    }
-                    else if(col == 1) {
-                        //horse
-                        this.board[row][col] = new Tile(row, col, color, 'H', false);
-                    }
-                    else if(col == 2) {
-                        //bishop
-                        this.board[row][col] = new Tile(row, col, color, 'B', false);
-                    }
-                    else if(col == 3) {
-                        //queen
-                        this.board[row][col] = new Tile(row, col, color, 'Q', false);
-                    }
-                    else if(col == 4) {
-                        //king
-                        this.board[row][col] = new Tile(row, col, color, 'K', false);
-                    }
-                    else if(col == 5) {
-                        this.board[row][col] = new Tile(row, col, color, 'B', false);
-                    }
-                    else if(col == 6) {
-                        this.board[row][col] = new Tile(row, col, color, 'H', false);
-                    }
-                    else if(col == 7) {
-                        this.board[row][col] = new Tile(row, col, color, 'R', false);
-                    }
-
-                    //switch the color
-                    color = tileColorSwitch();
+                //stones stuff
+                if((row == 0 || row == 1 || row == 2) && color.equals("black")) {
+                    Tile t = new Tile(row, col, color, name , 'B' , false);
+                    this.board[row][col] = t;
+                    //black stones
+                    Stone s = new Stone(t, color, this);
+                    this.blackStones.add(s);
+                }
+                else if((row == 5 || row == 6 || row == 7) && color.equals("white")) {
+                    Tile t = new Tile(row, col, color, name , 'W' , false);
+                    this.board[row][col] = t;
+                    //white stones
+                    Stone s = new Stone(t, color, this);
+                    this.whiteStones.add(s);
+                }
+                else {
+                    //make the tile, and keep all of them empty to start
+                    Tile t = new Tile(row, col, color, name , '-' , true);
+                    //add it to the board
+                    this.board[row][col] = t;
                 }
 
-                //pawn rows
-                else if(row == 1 || row == 6) {
-                    //all pawns
-                    this.board[row][col] = new Tile(row, col, color, 'P', false);
-                    //switch col
-                    color = tileColorSwitch();
+                //update the variables
+                if(col != 7) {
+                    //don't color switch on last tile
+                    color = tileColorSwitch(color);
                 }
-
-                else if(row == 2 || row == 3 || row == 4 || row == 5) {
-                    //empty
-                    this.board[row][col] = new Tile(row, col, color, '-', true);
-                    color = tileColorSwitch();
-                }
+                letter++;                
             }
+            //decrement the number
+            number--;
+            //reset the letter back to starting position
+            letter = 'A';
         }
     }
 
-    private String tileColorSwitch() {
-        String tempColor = "black";
-
-        if(tempColor == "black") {
-            //switch to white
-            tempColor = "white";
-        }
-        else {
-            //switch to black
-            tempColor = "black";
-        }
-
-        return tempColor;
-    }
+    //getters
 
     public Tile getTile(int row, int col) {
         return this.board[row][col];
     }
 
-    public void setTileState(int row, int col, char newState) {
-        this.board[row][col].setTileState(newState); 
+    public ArrayList<Stone> getWhiteStones() {
+        return this.whiteStones;
     }
 
-    public void printBoard() {
-        //go through rows and then columns
-        for (int i = 0; i < board.length; i++) {
-            for (int j = 0; j < board.length; j++) {
-                //print out the character
-                System.out.print(board[i][j].getTileState());
-                //add an extra space for readability
-                System.out.print(" ");
+    public ArrayList<Stone> getBlackStones() {
+        return this.blackStones;
+    }
+
+    //setters
+    public void setTileState(Tile t, char state) {
+        t.setState(state);
+    }
+
+    //toString
+    public String toString() {
+        String theString = "";
+
+        //do it
+        for (int row = 0; row < this.board.length; row++) {
+            //make a new line
+            theString += "\n";
+            for (int col = 0; col < this.board.length; col++) {
+                //add to string
+                theString += this.board[row][col].getState();
+                //make a space
+                theString += " ";
             }
-            //go to next line
-            System.out.println();
         }
-        //one last when done
-        System.out.println();
+        return theString;
     }
 
-    public void movePawn(Piece pawn) {
-        int row = pawn.getRow();
-        int col = pawn.getCol();
-        setTileState(row, col, '-');
-        setTileState(row-1, col, 'P');
+    //helper method
+    private String tileColorSwitch(String s) {
 
-        
+        if(s.equals("black")) {
+            //switch to white
+            s = "white";
+        }
+        else {
+            //switch to black
+            s = "black";
+        }
+
+        return s;
     }
 }

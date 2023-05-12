@@ -55,8 +55,17 @@ public class Tile {
 
     //the tile mutator methods
 
-    public void setTileState(char newState) {
+    public void setState(char newState) {
         this.tileState = newState;
+    }
+
+    public void setTileEmpty(boolean b) {
+        this.tileEmpty = b;
+    }
+
+    //toString
+    public String toString() {
+        return "Tile: " + this.name + "\n" + this.tileState + "\n" + "(" + this.row + "," + this.col + ")" + "\n" + this.color + "\n" + "empty: " + this.tileEmpty;
     }
 }
 

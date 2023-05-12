@@ -1,18 +1,24 @@
-public class Piece {
+public class Stone {
     //properties of the checkers piece
 
     //the current tile that it is on
     private Tile currentTile;
-    //what color is the pawn?
+    //what color is the stone?
     private String color;
     //give it a link to the board
     private Bitboard board;
 
-    public Piece(Tile currentTile, String color, Bitboard board) {
+    public Stone(Tile currentTile, String color, Bitboard board) {
         //contructor, set the properties of the pawn
         this.currentTile = currentTile;
         this.color = color;
         this.board = board;
+    }
+
+    //getters
+
+    public Tile getTile() {
+        return this.currentTile;
     }
 
     public int getRow() {
@@ -22,8 +28,15 @@ public class Piece {
         return this.currentTile.getCol();
     }
 
-    public void advance() {
-        //move the piece
-        
+    public String getColor() {
+        return this.color;
     }
+
+    //setters
+
+    public void setTile(Tile newTile) {
+        this.currentTile = newTile;
+    }
+
+    
 }
