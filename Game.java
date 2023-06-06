@@ -1,13 +1,22 @@
-import java.util.Scanner;
-
 public class Game {
-    public static void main(String[] args) {
-        
-        Bitboard myBoard = new Bitboard();
-        myBoard.printBoard();
+    //all the game logic
 
-        Pawn whitePawn = new Pawn(6, 0, "white", myBoard);
-        whitePawn.advance();
-        myBoard.printBoard();
+    //everything needed for the game to happen
+    private Bitboard board;
+    private Player playerWhite;
+    private Player playerBlack;
+
+
+    public Game() {
+        this.board = new Bitboard();
+        this.playerWhite = new Player("white", this.board.getWhiteStones());
+        this.playerBlack = new Player("black", this.board.getBlackStones());
+    }
+    
+    //the game method
+    public void playGame() {
+        System.out.println(this.board);
+        System.out.println(this.board.getTile(0, 1));
+
     }
 }
