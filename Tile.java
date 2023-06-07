@@ -10,7 +10,7 @@ public class Tile {
     //what is the name of the tile?
     private String name;
 
-    //char representation of the status of the tile
+    //char representation of the status of the tile (Black: B, White: W, Empty: -)
     private char tileState;
 
     //is the tile empty or not? 
