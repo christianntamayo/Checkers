@@ -103,6 +103,8 @@ public class Bitboard {
                 theString += " ";
             }
         }
+        //new line
+        theString += "\n";
         return theString;
     }
 

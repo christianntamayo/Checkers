@@ -65,7 +65,7 @@ public class Tile {
 
     //toString
     public String toString() {
-        return "Tile: " + this.name + "\n" + this.tileState + "\n" + "(" + this.row + "," + this.col + ")" + "\n" + this.color + "\n" + "empty: " + this.tileEmpty;
+        return "Tile: " + this.name + "\n" + this.tileState + "\n" + "(" + this.row + "," + this.col + ")" + "\n" + this.color + "\n" + "empty: " + this.tileEmpty + "\n";
     }
 }
 

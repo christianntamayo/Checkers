@@ -1,14 +1,12 @@
 public class Tests {
     public static void main(String[] args) {
-
         Bitboard myBoard = new Bitboard();
-        
-        Tile testTile = new Tile(1, 1, "black", "A1", '-', true);
-        //System.out.println(testTile);
-
-        Stone testStone = new Stone(testTile, "white", myBoard);
-        //System.out.println(testStone);
-
         System.out.println(myBoard);
+
+        Tile testTile = myBoard.getTile(0, 7);
+        System.out.println(testTile);
+
+        Player testPlayer = new Player("black", myBoard.getBlackStones());
+        System.out.println(testPlayer);
     }
 }
