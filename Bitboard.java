@@ -33,7 +33,7 @@ public class Bitboard {
                 String name = letter + Integer.toString(number);
                 
 
-                //stones stuff
+                //stones stuff, all stones must be on dark tiles for setup
                 if((row == 0 || row == 1 || row == 2) && color.equals("black")) {
                     Tile t = new Tile(row, col, color, name , 'B' , false);
                     this.board[row][col] = t;
@@ -41,7 +41,7 @@ public class Bitboard {
                     Stone s = new Stone(t, color, this);
                     this.blackStones.add(s);
                 }
-                else if((row == 5 || row == 6 || row == 7) && color.equals("white")) {
+                else if((row == 5 || row == 6 || row == 7) && color.equals("black")) {
                     Tile t = new Tile(row, col, color, name , 'W' , false);
                     this.board[row][col] = t;
                     //white stones
