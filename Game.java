@@ -15,8 +15,14 @@ public class Game {
     
     //the game method
     public void playGame() {
+        //game loop goes here!
         
-        
+        //print board
+        System.out.println(board);
+        //test move
+        this.playerBlack.moveStone("A7");
+        //board update
+        System.out.println(board);
 
     }
 }

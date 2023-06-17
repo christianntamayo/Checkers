@@ -22,19 +22,26 @@ public class Player {
         this.numPieces = 12;
     }
 
-    //moving
-    public void moveStone(String desiredStoneTileName, String desiredNewTileLocation) {
-        Stone currentStone;
+    //move method, 
 
-        //go through the array list
-        for (Stone s : this.stones) {
-            if(s.getTile().getName().equals(desiredStoneTileName)) {
-                //this is the stone we are moving!
-                currentStone = s;
-                break;
+    //for now lets just move forward i guess as a test
+    public void moveStone(String tileName) {
+        //go through each of the players tiles, check if any of the stones are on that tile so we know that is the one that is going to move
+        for (Stone stone : this.stones) {
+            //check the name
+            if(stone.getTile().getName().equals(tileName)) {
+                //move selected stone
+                Tile currentTile = stone.getTile();
+                int currentRow = currentTile.getRow();
+                int newRow = currentRow + 1;
+                //get rid of the tile on previous
+                currentTile.setState('-');
+                //set stone to the new tile
+                stone.setTile(stone.getBoard().getTile(newRow, stone.getCol()));
+                //set the tile state on the board
+                stone.getTile().setState('B');
             }
         }
-
     }
 
     //toString
