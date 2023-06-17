@@ -36,5 +36,10 @@ public class Player {
         }
 
     }
+
+    //toString
+    public String toString() {
+        return "Player: " + this.color + "\n" + "Pieces: " + this.numPieces + "\n";
+    }
     
 }

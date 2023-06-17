@@ -10,7 +10,7 @@ public class Tile {
     //what is the name of the tile?
     private String name;
 
-    //char representation of the status of the tile
+    //char representation of the status of the tile (Black: B, White: W, Empty: -)
     private char tileState;
 
     //is the tile empty or not? 
@@ -65,7 +65,7 @@ public class Tile {
 
     //toString
     public String toString() {
-        return "Tile: " + this.name + "\n" + this.tileState + "\n" + "(" + this.row + "," + this.col + ")" + "\n" + this.color + "\n" + "empty: " + this.tileEmpty;
+        return "Tile: " + this.name + "\n" + this.tileState + "\n" + "(" + this.row + "," + this.col + ")" + "\n" + this.color + "\n" + "empty: " + this.tileEmpty + "\n";
     }
 }
 

@@ -15,8 +15,8 @@ public class Game {
     
     //the game method
     public void playGame() {
-        System.out.println(this.board);
-        System.out.println(this.board.getTile(0, 1));
+        
+        
 
     }
 }

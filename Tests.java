@@ -5,5 +5,8 @@ public class Tests {
 
         Tile testTile = myBoard.getTile(0, 7);
         System.out.println(testTile);
+
+        Player testPlayer = new Player("black", myBoard.getBlackStones());
+        System.out.println(testPlayer);
     }
 }

@@ -38,5 +38,10 @@ public class Stone {
         this.currentTile = newTile;
     }
 
+    //toString
+    public String toString() {
+        return "Stone Attributes: " + "\n" + "Color: " + this.color + "\n" + "Tile: " + this.currentTile.getName();
+    }
+
     
 }
