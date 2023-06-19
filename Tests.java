@@ -3,7 +3,7 @@ public class Tests {
         Bitboard myBoard = new Bitboard();
         System.out.println(myBoard);
 
-        Tile testTile = myBoard.getTile(0, 7);
+        Tile testTile = myBoard.getTile(1, 0);
         System.out.println(testTile);
 
         Player testPlayer = new Player("black", myBoard.getBlackStones());

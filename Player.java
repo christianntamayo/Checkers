@@ -22,19 +22,102 @@ public class Player {
         this.numPieces = 12;
     }
 
-    //moving
-    public void moveStone(String desiredStoneTileName, String desiredNewTileLocation) {
-        Stone currentStone;
+    //move method. Rules: stones only move diagonally on dark squares. If able to capture, the player must capture and continue capturing if possible. player cannot go backwards unless reached end of board (king).
 
-        //go through the array list
-        for (Stone s : this.stones) {
-            if(s.getTile().getName().equals(desiredStoneTileName)) {
-                //this is the stone we are moving!
-                currentStone = s;
+    //checkers only move diagonally. Also make sure we are moving in the correct direction based on tile color
+    public void moveStone(String tileName, String direction) {
+        //go through each of the players tiles, check if any of the stones are on that tile so we know that is the one that is going to move
+        for (Stone stone : this.stones) {
+            //check the name
+            if(stone.getTile().getName().equals(tileName)) {
+                //remember the tile before movement
+                Tile currentTile = stone.getTile();
+
+                //move selected stone
+                
+                //color of stone
+                if(this.color.equals("black")) {
+                    //direction
+                    if(direction.equals("right")) {
+                        //moving diagonally downwards to the right
+                        int newRow = stone.getTile().getRow() + 1;
+                        int newCol = stone.getTile().getCol() + 1;
+                        //check for availability
+                        if(stone.getBoard().getTile(newRow, newCol).getState() == '-') {
+                            //then allow movement
+                            stone.setTile(stone.getBoard().getTile(newRow, newCol));
+                            //set the stuff on the new tile
+                            stone.getTile().setState('B');
+                            stone.getTile().setTileEmpty(false);
+
+                            //reset the tile that we were previously just on
+                            currentTile.setState('-');
+                            currentTile.setTileEmpty(true);
+                        } 
+                        else {
+                            //just print out error msg
+                            System.out.println("invalid move");
+                        }                   
+                    }
+                    else if(direction.equals("left")) {
+                         //moving diagonally downwards to the left
+                         int newRow = stone.getTile().getRow() + 1;
+                         int newCol = stone.getTile().getCol() - 1;
+
+                         if(stone.getBoard().getTile(newRow, newCol).getState() == '-') {
+                            stone.setTile(stone.getBoard().getTile(newRow, newCol));
+                            stone.getTile().setState('B');
+                            stone.getTile().setTileEmpty(false);
+
+                            currentTile.setState('-');
+                            currentTile.setTileEmpty(true);
+                         }
+                         else {
+                            System.out.println("invalid move");
+                         }
+                    }
+                }
+                else if(this.color.equals("white")) {
+                    //direction
+                    if(direction.equals("right")) {
+                        //moving diagonally upwards to the right
+                        int newRow = stone.getTile().getRow() - 1;
+                        int newCol = stone.getTile().getCol() + 1;
+
+                        if(stone.getBoard().getTile(newRow, newCol).getState() == '-') {
+                            stone.setTile(stone.getBoard().getTile(newRow, newCol));
+                            stone.getTile().setState('W');
+                            stone.getTile().setTileEmpty(false);
+
+                            currentTile.setState('-');
+                            currentTile.setTileEmpty(true);
+                        }
+                        else {
+                            System.out.println("invalid move");
+                        }
+                    }
+                    else if(direction.equals("left")) {
+                         //moving diagonally to the left
+                         int newRow = stone.getTile().getRow() - 1;
+                         int newCol = stone.getTile().getCol() - 1;
+
+                         if(stone.getBoard().getTile(newRow, newCol).getState() == '-') {
+                            stone.setTile(stone.getBoard().getTile(newRow, newCol));
+                            stone.getTile().setState('W');
+                            stone.getTile().setTileEmpty(false);
+
+                            currentTile.setState('-');
+                            currentTile.setTileEmpty(true); 
+                        }
+                        else {
+                            System.out.println("invalid move");
+                        }
+                    }
+                }
+                //also break
                 break;
             }
         }
-
     }
 
     //toString

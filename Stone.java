@@ -32,6 +32,10 @@ public class Stone {
         return this.color;
     }
 
+    public Bitboard getBoard() {
+        return this.board;
+    }
+
     //setters
 
     public void setTile(Tile newTile) {
