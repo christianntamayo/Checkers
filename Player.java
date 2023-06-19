@@ -41,10 +41,4 @@ public class Player {
     public String toString() {
         return "Player: " + this.color + "\n" + "Pieces: " + this.numPieces;
     }
-
-    //toString
-    public String toString() {
-        return "Player: " + this.color + "\n" + "Pieces: " + this.numPieces + "\n";
-    }
-    
 }
